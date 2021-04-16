@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h2>List of all categories</h2>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <td>ID</td>
+            <td>Name</td>
+            <td>Delete</td>
+            <td>Edit</td>
+        </tr>
+        </thead>
+        {% for categorie in categories %}
+            <tr>
+                <td>{{ categorie.id }}</td>
+                <td>
+                    {{ categorie.name }}
+                </td>
+                <td>
+                    <a href="{{ path('category.delete', {id: categorie.id}) }}">
+                        Delete
+                    </a>
+
+                </td>
+                <td>
+                    <a href="{{ path('category.update', {id: categorie.id}) }}">
+                        Edit
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        <a class="btn btn-success" href="{{ path('category.create') }} ">
+            Create category
+        </a>
+    </table>
+
+{% endblock %}

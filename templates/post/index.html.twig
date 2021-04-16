@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+
+</table>
+<h2>List of all posts</h2>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <td>ID</td>
+        <td>Title</td>
+        <td>Delete</td>
+        <td>Edit</td>
+        <td>Tags</td>
+
+    </tr>
+    </thead>
+    <tbody>
+    {% for post in posts %}
+        <tr>
+            <td>{{ post.id }}</td>
+            <td>
+                <a href="{{ path('post.show', {id: post.id}) }}">{{ post.title }}</a>
+            </td>
+            <td>
+                <a href="{{ path('post.delete', {id: post.id}) }}">
+                    Delete
+                </a>
+            </td>
+            <td>
+                <a href="{{ path('post.update', {id: post.id}) }}">
+                    Edit
+                </a>
+            </td>
+            <td>
+                <a href="{{ path('post.tag.add', {id: post.id}) }}">
+                    AddTag
+                </a>
+            </td>
+        </tr>
+    {% endfor %}
+
+        <a class="btn btn-success" href="{{ path('post.create') }} ">
+            Create post
+        </a>
+
+    </tbody>
+
+    {% endblock %}
+
